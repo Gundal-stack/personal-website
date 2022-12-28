@@ -4,6 +4,69 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <script>
+        // Create a canvas element and append it to the body
+        const canvas = document.createElement("canvas");
+        document.body.appendChild(canvas);
+    
+        // Set the canvas dimensions to fill the screen
+        const width = canvas.width = window.innerWidth;
+        const height = canvas.height = window.innerHeight;
+    
+        // Get the canvas context
+        const ctx = canvas.getContext("2d");
+    
+        // Set the background color
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, width, height);
+    
+        // Define some variables
+        let x = 0;
+        let y = 0;
+        let dx = 5;
+        let dy = 5;
+        let radius = 20;
+        let color = "white";
+    
+        // Animate the background
+        function animate() {
+          requestAnimationFrame(animate);
+    
+          // Clear the canvas
+          ctx.clearRect(0, 0, width, height);
+    
+          // Draw a circle that bounces off the edges of the screen
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.fill();
+    
+          // Update the position of the circle
+          x += dx;
+          y += dy;
+    
+          // Change direction when the circle hits the edge of the screen
+          if (x + radius > width || x - radius < 0) {
+            dx = -dx;
+            color = getRandomColor();
+          }
+          if (y + radius > height || y - radius < 0) {
+            dy = -dy;
+            color = getRandomColor();
+          }
+        }
+    
+        // Generate a random color
+        function getRandomColor() {
+          const r = Math.floor(Math.random() * 256);
+          const g = Math.floor(Math.random() * 256);
+          const b = Math.floor(Math.random() * 256);
+          return `rgb(${r}, ${g}, ${b})`;
+        }
+    
+        // Start the animation
+        animate();
+      </script>
     <header>
       <h1>Fresh Personal Website</h1>
       <nav>
