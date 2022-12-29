@@ -2,7 +2,7 @@
   --white: #dfdfdf;
   --font_main: "Comfortaa", sans-serif;
   --main_gray: #303e40;
-  --secondary_gray: #636464;
+  --secondary_gray: hsl(0, 0%, 0%);
   --background_gray: #2a2525;
   --background_gray_rgb: 42, 37, 37;
 
