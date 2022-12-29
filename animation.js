@@ -1,60 +1,56 @@
-// Get the canvas and set the dimensions
-const canvas = document.querySelector("canvas");
-const width = canvas.width = window.innerWidth;
-const height = canvas.height = window.innerHeight;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// Get the canvas context
-const ctx = canvas.getContext("2d");
+particlesJS("particles-js", {
+  particles: {
+    number: {
+      value: 100, // number of dots on the screen
+      density: {
+        enable: true,
+        value_area: 800,
+      },
+    },
+    color: { value: "#2f307f" },
+    opacity: {
+      value: 0.9,
+      random: true,
+      anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false },
+    },
+    size: {
+      value: 2,
+      random: true,
+    },
+    line_linked: {
+      enable: true,
+      distance: 100,
+      color: "#7042ff",
+      opacity: 0.3,
+      width: 1.7,
+    },
+  },
+  interactivity: {
+    detect_on: "window",
+    events: {
+      onhover: { enable: true, mode: "repulse" },
+      onclick: { enable: true, mode: "repulse" },
+    },
+    modes: {
+      repulse: { distance: 150, duration: 0.5 },
+    },
+  },
+  retina_detect: true,
+});
 
-// Set the background color
-ctx.fillStyle = "black";
-ctx.fillRect(0, 0, width, height);
+// make border of big box go wavy and stuff
+// get by class: box_round_corners
 
-// Define the circles array
-const circles = [
-  { x: 100, y: 100, radius: 20, color: "white" },
-  { x: 200, y: 200, radius: 30, color: "red" },
-  // Add additional circles here
-];
+async function rainbowColorTitleLoop() {
+  // await sleep(200); // wait for page load
+  var R = 255;
+  var G = 0;
+  var B = 0;
 
-// Animate the circles
-function animate() {
-  requestAnimationFrame(animate);
-
-  // Clear the canvas
-  ctx.clearRect(0, 0, width, height);
-
-  // Loop through the circles array
-  for (const circle of circles) {
-    // Draw the circle
-    ctx.beginPath();
-    ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
-    ctx.fillStyle = circle.color;
-    ctx.fill();
-
-    // Update the position of the circle
-    circle.x += circle.dx;
-    circle.y += circle.dy;
-
-    // Change direction when the circle hits the edge of the screen
-    if (circle.x + circle.radius > width || circle.x - circle.radius < 0) {
-      circle.dx = -circle.dx;
-      circle.color = getRandomColor();
-    }
-    if (circle.y + circle.radius > height || circle.y - circle.radius < 0) {
-      circle.dy = -circle.dy;
-      circle.color = getRandomColor();
-    }
-  }
+  var title = document.getElementsByClassName("box_main_title")[0];
+  console.log(title);
 }
 
-// Generate a random color
-function getRandomColor() {
-  const r = Math.floor(Math.random() * 256);
-  const g = Math.floor(Math.random() * 256);
-  const b = Math.floor(Math.random() * 256);
-  return `rgb(${r}, ${g}, ${b})`;
-}
-
-// Start the animation
-animate();
+// rainbowColorTitleLoop();
