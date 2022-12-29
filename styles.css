@@ -71,6 +71,7 @@ canvas {
   );
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  background-clip: text;
   animation: stripes 3s linear infinite;
 
   /* text glow */
